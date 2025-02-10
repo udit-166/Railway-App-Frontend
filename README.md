@@ -1,4 +1,6 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Railway App Frontend
+
+This repository contains the backend services for the **Railway App System**, a microservices-based application built to provide seamless railway ticket booking, train information, and customer support, integrated with the corresponding [backend application](https://github.com/udit-166/Railway-App-Backend).
 
 # Getting Started
 
@@ -59,21 +61,37 @@ Now that you have successfully run the app, let's modify it.
 
 You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+## 📱 Few App Screenshots
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+### 🚆 Home Screen
+![Home Screen](./Images/GetStart.png)
 
-# Troubleshooting
+### 🚆 Login Screen
+![Login Screen](./Images/Login.png)
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### 🚆 Registration Screen
+![Signup Screen](./Images/Registration-Screen.png)
 
-# Learn More
+### 🚆 Otp Screen
+![Otp Screen](./Images/OTPScreen.png)
 
-To learn more about React Native, take a look at the following resources:
+### 🚆 Welcome Screen
+![Welcome Screen](./Images/Welcome.png)
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+### 🚆 Choose Station Screen
+![Choose Station Screen](./Images/Choose-Station.png)
+
+### 🚆 Date Selection Screen
+![Date Selection Screen](./Images/Date.png)
+
+### 🚆 Ticket Detail Screen
+![Ticket Detail Screen](./Images/Ticket-Details.png)
+
+### 🚆 Successful Booking Screen
+![Successful Booking Screen](./Images/Successful-Booking.png)
+
+### 🚆 AI Chatbot Screen
+![AI Chatbot Screen](./Images/AI-Chatbot.png)
+
+### 🚆 Not Found Screen
+![Not Found Screen](./Images/Not-found.png)
