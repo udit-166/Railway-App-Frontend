@@ -81,9 +81,6 @@ You've successfully run and modified your React Native App. :partying_face:
 ### 🚆 Choose Station Screen
 ![Choose Station Screen](./Images/Choose-Station.png)
 
-### 🚆 Date Selection Screen
-![Date Selection Screen](./Images/Date.png)
-
 ### 🚆 Ticket Detail Screen
 ![Ticket Detail Screen](./Images/Ticket-Details.png)
 
