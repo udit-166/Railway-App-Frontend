@@ -1,10 +1,18 @@
-import { Animated, Image, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Animated, Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { TextInputForStation } from "../../component/TextFields/TextIput";
 import { useState } from "react";
+import { useTheme } from "@react-navigation/native";
+import BottomSheet from "../../component/BottomSheet";
+import GetStartedButton from "../../component/Buttons/GetStartedButton";
+import { getFontSize, getHeight, getWidth } from "../../utils/pixelSizeCalc";
 
-const Welcome=()=>{
+const Welcome=({route, navigation})=>{
     const [rotation, setRotation] = useState(new Animated.Value(0));
-
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [showOneWay, setShowOneWay] = useState(true);
+    const [isActive, setIsActive] = useState("One Way");
+    const [activeComponent, setActiveComponent] = useState(null);
+    const {colors, fonts} = useTheme();
     const toggleRotation = () => {
         const newValue = rotation.__getValue() === 0 ? 1 : 0;
         Animated.timing(rotation, {
@@ -20,64 +28,93 @@ const Welcome=()=>{
         outputRange: ["0deg", "180deg"],
       });
 
+      const toggleModal = (component) => {
+        setActiveComponent(component); // Set the active component for BottomSheet
+        setIsModalVisible(!isModalVisible);
+    };
+    const navigationHandler=()=>{
+      navigation.navigate("TrainList");
+    }
+
     return(
     
-    <View style={{marginHorizontal:15, marginVertical:20, flex:1}}>
+    <View style={{marginHorizontal:getWidth(15), marginVertical:getHeight(20), flex:1}}>
       <View>
-        <Text>Hi, there</Text>
-        <Text>Udit Shahi</Text>
+        <Text style={{color:colors.label, fontFamily:fonts.medium}}>Hi there,
+        </Text>
+        <Text style={{color:colors.offWhite, fontFamily:fonts.semiBold, fontSize:16}}>Udit Shahi</Text>
       </View>
-        <View style={{ borderWidth: 1, borderColor: "gray", borderRadius: 10 }}>
-        <TextInputForStation
-          placeholder="Enter the source station name"
-          image={require("../../Images/Train.png")}
-        />
-
-<TextInputForStation
-          placeholder="Enter Destination Station name"
-          image={require("../../Images/Train.png")}
-        />
-<View style={{flexDirection:"row"}}>
-<TextInputForStation
-          image={require("../../Images/Calendar-Icon.jpg")}
-          value="15/06/2024"
-        />
-        <View style={{marginVertical:4 , borderWidth:0.5, borderColor:"gray", borderRadius:8}}>
-            <View style={{backgroundColor:"green",paddingHorizontal:5}}>
-                <Text style={{textAlign:"center", color:"#fff"}}>
-                    Today
-                </Text>
-            </View>
-            <View style={{paddingHorizontal:5}}>
-                <Text>12/05/2024</Text>
-            </View>
+      <View style={{backgroundColor:colors.secondary, flexDirection:"row",paddingVertical:getHeight(5), paddingHorizontal:getWidth(5), marginTop:getHeight(20), height:getHeight(45),borderRadius:getWidth(10)}}>
+                <Pressable onPress={()=>{ setIsActive("One Way");
+                    setShowOneWay(true);}
+                }style={styles.tabChoosen(isActive === "One Way")}>
+                    <Text style={{color:"white"}}>One Way</Text>
+                </Pressable>
+                <Pressable onPress={()=> {setIsActive("Round Trip"); setShowOneWay(false)}}style={styles.tabChoosen(isActive === "Round Trip")}>
+                    <Text style={{color:"white"}}>Round Trip</Text>
+                </Pressable>
         </View>
-</View>
+        <Text style={{color:colors.offWhite, fontSize:getFontSize(20), fontFamily:fonts.semiBold, marginTop:getHeight(20), marginBottom:getHeight(15)}}>Let's make a journey</Text>
+
+        <TextInputForStation
+                placeholder="Where do you want to start from"
+                image={require("../../Images/location-icon.png")}
+                onPress={() => toggleModal("ChooseStation")}
+            />
+            <TextInputForStation
+                placeholder="Choose your destination"
+                image={require("../../Images/Destination-icon.png")}
+                onPress={() => toggleModal("ChooseStation")}
+            />
+            <TextInputForStation
+                placeholder="Date of departure"
+                image={require("../../Images/calendar.png")}
+                onPress={() => toggleModal("ChooseDate")}
+            />
+            <TextInputForStation
+                placeholder="Passengers"
+                image={require("../../Images/passengers.png")}
+                onPress={() => toggleModal("NumberOfPassengers")}
+            />
+            <GetStartedButton title="Search" width={getWidth(315)} onPress={navigationHandler}/>
+            <BottomSheet
+                isModalVisible={isModalVisible}
+                toggleModal={() => setIsModalVisible(false)}
+                activeComponent={activeComponent} // Pass the active component to BottomSheet
+            />
 <TouchableOpacity
           onPress={toggleRotation} // Toggle rotation on click
           style={{
             position: "absolute",
-            right: 30,
-            top: 28,
+            borderRadius:getWidth(20),
+            right: getWidth(22),
+            top:getHeight(200),
             zIndex: 9999,
-            padding: 12,
-            borderWidth: 1,
-            borderColor: "gray",
-            borderRadius: 60,
-            backgroundColor: "#fff",
+            backgroundColor: "white",
           }}
         >
           <Animated.Image
-            source={require("../../Images/up-and-down-arrows.png")}
+            source={require("../../Images/swap.png")}
             style={{
-              width: 20,
-              height: 20,
+              width: getWidth(42),
+              height: getHeight(42),
+              padding:getWidth(0),
+              margin:getWidth(0),
+              
               transform: [{ rotate: rotateInterpolate }],
             }}
           />
         </TouchableOpacity>
         </View>
-    </View>)
+  )
 }
-
+const styles = StyleSheet.create({
+  tabChoosen:(isActive)=>({
+      backgroundColor: isActive ? "#4c4c4c" : "#0e1419", 
+      borderRadius:getWidth(10),
+      justifyContent:"center",
+      alignItems:"center",
+      width:"50%"
+  })
+})
 export default Welcome;

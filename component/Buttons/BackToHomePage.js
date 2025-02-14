@@ -2,16 +2,17 @@ import { getStateFromPath, useTheme } from "@react-navigation/native"
 import { Pressable, Text, View } from "react-native"
 import { getFontSize, getHeight, getWidth } from "../../utils/pixelSizeCalc";
 
-const GetStartedButton=(props)=>{
+const BackToHomePageButton=(props)=>{
     const {colors, fonts} = useTheme();
 
     return (
         <Pressable style={({pressed})=>[
             {opacity:props.disable ? 0.5 : pressed?0.5:1},
             {height:getHeight(50)},
-            {backgroundColor:colors.primary},
-           
-            {width:getWidth(props.width)},
+            {backgroundColor:colors.secondary},
+            {borderWidth:getWidth(2)},
+            {borderColor:colors.primary},
+            {width:props.width},
             {justifyContent:"center"},
             {alignItems:"center"},
             {borderRadius:getWidth(10)}
@@ -22,5 +23,5 @@ const GetStartedButton=(props)=>{
     )
 }
 
-export default GetStartedButton;
+export default BackToHomePageButton;
 

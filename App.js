@@ -9,6 +9,17 @@ import LoginScreen from './Screen/Login Screens/LoginScreen';
 import Registration from './Screen/Login Screens/Registration';
 import Verify from './Screen/Login Screens/Verify';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import TrainList from './Screen/Train/TrainList';
+import ChooseSeatType from './Screen/Trip Detail Screens/ChooseSeatType';
+import PassengerInformationForm from './Screen/PassengerDetails/PassenmgerInformationForm';
+import PassengerDetails from './Screen/PassengerDetails/PassengerDetails';
+import PassengerInformation from './Screen/Trip Detail Screens/PessengerInformation';
+import SuccessScreen from './Screen/Successfull Booking/SuccessScreen';
+import TicketDetail from './Screen/Ticket/TicketDetail';
+import TicketListScreen from './Screen/Ticket/TicketListScreen';
+import CustomerSupportScreen from './Screen/Customer Support/CustomerSupportScreen';
+import ProfileScreen from './Screen/Profile/ProfileScreen';
+import PaymentScreen from './Screen/Payment/PaymentScreen';
  // make sure this path is correct
 
 const BottomTab = createBottomTabNavigator();
@@ -31,7 +42,7 @@ const TabIcon = ({ name, color, size, isFocused }) => {
 
 const theme = {
   colors:{
-    primary:"#0804f9",
+    primary:"#0080FF",
     secondary:"#0e1419",
     label:"#7b7d86",
     cardBackground:"",
@@ -82,6 +93,48 @@ const BottomTabNavigator = () => {
           tabBarLabel:"Home",
         }}
       />
+      <BottomTab.Screen
+        name="TicketListScreen"
+        component={TicketListScreen}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <TabIcon
+              name="ticket-sharp"
+              color={color}
+              size={size}
+              isFocused={focused}
+            />),
+          tabBarLabel:"Home",
+        }}
+      />
+       <BottomTab.Screen
+        name="CustomerCare"
+        component={CustomerSupportScreen}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <TabIcon
+              name="chatbubbles-outline"
+              color={color}
+              size={size}
+              isFocused={focused}
+            />),
+          tabBarLabel:"Home",
+        }}
+      />
+       <BottomTab.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <TabIcon
+              name="person-outline"
+              color={color}
+              size={size}
+              isFocused={focused}
+            />),
+          tabBarLabel:"Home",
+        }}
+      />
     </BottomTab.Navigator>
   );
 };
@@ -95,6 +148,13 @@ const App = () => {
           <Stack.Screen name="SignUpScreen" component={Registration} />
           <Stack.Screen name="Home" component={BottomTabNavigator} />
           <Stack.Screen name="Verify" component={Verify} />
+          <Stack.Screen name="TrainList" component={TrainList}/>
+          <Stack.Screen name="SelectSeatType" component={ChooseSeatType}/>
+          <Stack.Screen name="TicketInformation" component={PassengerInformation}/>
+          <Stack.Screen name="AddPaseengerScreen" component={PassengerDetails}/>
+          <Stack.Screen name="SuccessScreen" component={SuccessScreen}/>
+          <Stack.Screen name="ViewTicketDetail" component={TicketDetail}/>
+          <Stack.Screen name="Transaction" component={PaymentScreen}/>
         </Stack.Navigator>
       </NavigationContainer> 
      
@@ -113,8 +173,8 @@ const styles = StyleSheet.create({
   border: {
     position: "absolute", // Use absolute positioning
     top: 5, // Position it at the bottom
-    left: "50%", // Center it horizontally
-    transform: [{ translateX: -189 }], // Adjust for half the width
+    left: "100%", // Center it horizontally
+    transform: [{ translateX: -110 }], // Adjust for half the width
     height: 5,
     width: 42,
     backgroundColor: "white", // Active border color

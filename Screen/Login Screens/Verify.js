@@ -2,6 +2,7 @@ import { useTheme } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { OtpInput } from "react-native-otp-entry";
+import { getFontSize, getHeight, getWidth } from "../../utils/pixelSizeCalc";
 
 const Verify =({route, navigation})=>{
     const {colors, fonts} = useTheme();
@@ -30,27 +31,27 @@ const Verify =({route, navigation})=>{
   }
     return (
         <View>
-            <Text style={{color:"white", textAlign:"center", fontSize:23, fontsFamily:fonts.semiBold, paddingTop:40}}>Verification</Text>
+            <Text style={{color:"white", textAlign:"center", fontSize:getFontSize(23), fontsFamily:fonts.semiBold, paddingTop:getHeight(40)}}>Verification</Text>
             <Text
         style={{
           color: "white",
           textAlign: "center",
-          fontSize: 26,
+          fontSize: getFontSize(26),
           fontFamily: fonts.regular,
-          marginTop: 20,
+          marginTop: getHeight(20),
         }}
       >
         {timer > 0 ? `00:${timer < 10 ? `0${timer}` : timer}` : "00:00"}
       </Text>
       
-        <Text style={{color:colors.label,marginTop:20, textAlign:"center", paddingHorizontal:50}}>{`We sent the verification code to your mention ${email.length>0 ? "email id" : "phone number"}`}</Text>
+        <Text style={{color:colors.label,marginTop:getHeight(20), textAlign:"center", paddingHorizontal:getWidth(50)}}>{`We sent the verification code to your mention ${email.length>0 ? "email id" : "phone number"}`}</Text>
         <TouchableOpacity onPress={handleResend} disabled={timer > 0}>
         <Text
           style={{
             color: timer === 0 ? colors.warning : colors.label, // Enable when timer reaches 0, otherwise show as disabled
-            marginTop: 15,
+            marginTop: getHeight(15),
             textAlign: "center",
-            fontSize: 14,
+            fontSize: getFontSize(14),
           }}
         >
           Send Again
@@ -74,10 +75,10 @@ const Verify =({route, navigation})=>{
 //     focusedPinCodeContainerStyle: styles.activePinCodeContainer,
    }}
 />
-        <View style={{justifyContent:"center", alignItems:"center", fontSize:16, flexDirection:"row", gap:5, marginTop:10}}>
+        <View style={{justifyContent:"center", alignItems:"center", fontSize:getFontSize(16), flexDirection:"row", gap:getWidth(5), marginTop:getHeight(10)}}>
             <Text style={{color:"white"}}>{email.length>0?email:phonenumber}</Text>
             <TouchableOpacity>
-            <Image source={require("../../Images/EditIcon.png")} style={{width:15, height:15}}/>
+            <Image source={require("../../Images/EditIcon.png")} style={{width:getWidth(15), height:getHeight(15)}}/>
             </TouchableOpacity>
         </View>
     </View>
@@ -85,8 +86,8 @@ const Verify =({route, navigation})=>{
 
 const styles=StyleSheet.create({
     container:{
-        marginVertical:20,
-        paddingHorizontal:55,
+        marginVertical:getHeight(20),
+        paddingHorizontal:getWidth(55),
     },
     pinCodeContainer:{
         backgroundColor:"#4c4c4c",
